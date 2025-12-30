@@ -1,0 +1,378 @@
+@charset "utf-8";
+
+/*
+    Paleta de cores:
+    #E1C095
+    #A58258
+    #ACC8DD
+*/
+
+:root {
+    --cor-primaria: #A58258;
+    --cor-secundaria: #ACC8DD;
+    --cor-terciaria: #E1C095;
+    --cor-fundo: #A58258;
+    --cor-fundo-form: #ffffff;
+    --cor-texto: #333333;
+    --cor-texto-claro: #ffffff;
+    --cor-erro: #e74c3c;
+    --cor-sucesso: #27ae60;
+    --cor-aviso: #f39c12;
+    --cor-sombra: rgba(0, 0, 0, 0.45);
+    --cor-borda: #ACC8DD;
+}
+
+html[data-tema="escuro"] {
+    --cor-fundo: #1a1a1a;
+    --cor-fundo-form: #2d2d2d;
+    --cor-texto: #f0f0f0;
+    --cor-borda: #444444;
+    --cor-sombra: rgba(0, 0, 0, 0.8);
+}
+
+* {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body, html {
+    background-color: var(--cor-fundo);
+    min-height: 100vh;
+    color: var(--cor-texto);
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+main {
+    position: relative;
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* ===== BOTÃO TEMA ===== */
+.tema-btn {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background-color: var(--cor-secundaria);
+    border: none;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--cor-texto-claro);
+    box-shadow: 0 4px 15px var(--cor-sombra);
+    transition: transform 0.2s ease, background-color 0.3s ease;
+    z-index: 100;
+}
+
+.tema-btn:hover {
+    transform: scale(1.1) rotate(20deg);
+}
+
+.tema-btn:active {
+    transform: scale(0.95);
+}
+
+.tema-btn i {
+    font-size: 24px;
+}
+
+/* ===== SEÇÃO LOGIN ===== */
+section#login {
+    position: relative;
+    overflow: hidden;
+    background-color: var(--cor-fundo-form);
+    width: 250px;
+    height: 515px;
+    border-radius: 20px;
+    box-shadow: 0px 0px 20px var(--cor-sombra);
+    transition: width 2s ease, height 1s ease, box-shadow 0.3s ease;
+}
+
+section#login:hover {
+    box-shadow: 0px 0px 30px var(--cor-sombra);
+}
+
+section#login > div#imagem {
+    display: block;
+    background: var(--cor-primaria) url('../imagens/pexels-reyyan-505450018-30854646.jpg') no-repeat;
+    background-size: cover;
+    background-position: left bottom;
+    height: 200px;
+    position: relative;
+    overflow: hidden;
+}
+
+section#login > div#imagem::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(165, 130, 88, 0.3) 0%, rgba(172, 200, 221, 0.2) 100%);
+}
+
+section#login > div#formulario {
+    display: block;
+    padding: 10px;
+    height: 315px;
+    overflow-y: auto;
+}
+
+section#login > div#formulario::-webkit-scrollbar {
+    width: 6px;
+}
+
+section#login > div#formulario::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+section#login > div#formulario::-webkit-scrollbar-thumb {
+    background: var(--cor-secundaria);
+    border-radius: 3px;
+}
+
+/* ===== CABEÇALHO DO FORMULÁRIO ===== */
+div#formulario > h1 {
+    text-align: center;
+    margin-bottom: 10px;
+    color: var(--cor-texto);
+    font-size: 1.8em;
+    font-weight: 600;
+}
+
+div#formulario > p {
+    font-size: 0.8em;
+    color: var(--cor-texto);
+    margin-bottom: 15px;
+    line-height: 1.4;
+}
+
+/* ===== CAMPOS DO FORMULÁRIO ===== */
+form > div.campo {
+    background-color: var(--cor-borda);
+    border: 2px solid var(--cor-borda);
+    width: 100%;
+    height: 40px;
+    border-radius: 8px;
+    margin: 10px 0;
+    display: flex;
+    align-items: center;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+}
+
+form > div.campo:focus-within {
+    border-color: var(--cor-primaria);
+    box-shadow: 0 0 10px rgba(165, 130, 88, 0.2);
+}
+
+form > div.campo.invalido {
+    border-color: var(--cor-erro) !important;
+    background-color: rgba(231, 76, 60, 0.1);
+}
+
+div.campo > label {
+    display: none;
+}
+
+div.campo > i {
+    color: white;
+    background-color: #000000;
+    font-size: 1.5em;
+    width: 40px;
+    height: 100%;
+    padding: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+div.campo > input {
+    border: none;
+    background: transparent;
+    width: calc(100% - 50px);
+    height: 100%;
+    padding: 5px 10px;
+    font-size: 0.95em;
+    color: var(--cor-texto);
+    transition: background-color 0.2s ease;
+}
+
+div.campo > input::placeholder {
+    color: rgba(51, 51, 51, 0.5);
+}
+
+html[data-tema="escuro"] div.campo > input::placeholder {
+    color: rgba(240, 240, 240, 0.5);
+}
+
+div.campo > input:focus {
+    outline: none;
+    background-color: rgba(255, 255, 255, 0.5);
+}
+
+html[data-tema="escuro"] div.campo > input:focus {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* ===== MENSAGEM DE ERRO ===== */
+span.erro {
+    color: var(--cor-erro);
+    font-size: 0.75em;
+    display: block;
+    margin-top: 3px;
+    font-weight: 500;
+    animation: slideDown 0.3s ease;
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-5px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ===== CHECKBOX ===== */
+div.campo-checkbox {
+    display: flex;
+    align-items: center;
+    margin: 15px 0;
+    gap: 8px;
+}
+
+div.campo-checkbox input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    cursor: pointer;
+    accent-color: var(--cor-primaria);
+}
+
+div.campo-checkbox label {
+    cursor: pointer;
+    font-size: 0.9em;
+    color: var(--cor-texto);
+    user-select: none;
+}
+
+/* ===== BOTÕES ===== */
+form > input[type=submit] {
+    display: block;
+    font-size: 1em;
+    width: 100%;
+    height: 40px;
+    background-color: var(--cor-secundaria);
+    color: var(--cor-texto-claro);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+    margin: 10px 0;
+}
+
+form > input[type=submit]:hover {
+    background-color: var(--cor-primaria);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+form > input[type=submit]:active {
+    transform: translateY(0);
+}
+
+form a.botao {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.95em;
+    width: 100%;
+    height: 40px;
+    background: linear-gradient(135deg, #f39c12 0%, #e67e22 100%);
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: transform 0.2s ease, box-shadow 0.3s ease, background 0.3s ease;
+}
+
+form a.botao:hover {
+    background: linear-gradient(135deg, #e67e22 0%, #d35400 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(243, 156, 18, 0.3);
+}
+
+form a.botao:active {
+    transform: translateY(0);
+}
+
+form a.botao i {
+    font-size: 1.2em;
+}
+
+/* ===== RESPONSIVIDADE ===== */
+@media (max-width: 600px) {
+    section#login {
+        width: 90vw;
+        max-width: 400px;
+        height: auto;
+    }
+
+    section#login > div#imagem {
+        height: 150px;
+    }
+
+    section#login > div#formulario {
+        padding: 15px;
+        height: auto;
+    }
+
+    div#formulario > h1 {
+        font-size: 1.5em;
+    }
+
+    div#formulario > p {
+        font-size: 0.75em;
+    }
+
+    .tema-btn {
+        top: 10px;
+        right: 10px;
+        width: 45px;
+        height: 45px;
+    }
+}
+
+@media (max-width: 400px) {
+    section#login {
+        width: 95vw;
+        border-radius: 15px;
+    }
+
+    div.campo > i {
+        font-size: 1.2em;
+    }
+
+    form > input[type=submit],
+    form a.botao {
+        height: 38px;
+        font-size: 0.9em;
+    }
+}
